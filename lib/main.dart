@@ -1,4 +1,7 @@
+// PACKAGE IMPORTS
 import 'package:flutter/material.dart';
+// CUSTOM IMPORTS
+import './queston.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -37,7 +40,9 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text("Question 1: " + question[_qIndex]),
+            Question(
+              question[_qIndex]
+            ),
             RaisedButton(
               child: Text('Answer 1'),
               onPressed: () {
