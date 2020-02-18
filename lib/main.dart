@@ -1,8 +1,6 @@
 // PACKAGE IMPORTS
 import 'package:flutter/material.dart';
 // CUSTOM IMPORTS
-import './queston.dart';
-import './answer.dart';
 import './quiz.dart';
 import './result.dart';
 
@@ -15,9 +13,9 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   //CLASS VARS
-  int _qIndex = 0;
+  int _questionIndex = 0;
 
-  static const List<Map<String, Object>> question = [
+  static const List<Map<String, Object>> _questions = [
     {
       'questionText': "What's your favourite colour?",
       'answerText': ['Black', 'Red', 'Blue', 'Green']
@@ -36,7 +34,7 @@ class _MyAppState extends State<MyApp> {
   void _answerQuestion() {
     setState(() {
       // Calls Build method of widget again. Only draws the necessary parts
-      _qIndex++;
+      _questionIndex++;
       // if (_qIndex >= question.length) {
       //   _qIndex = 0;
       // }
@@ -60,17 +58,13 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text("My First App"),
         ),
-        body: _qIndex < question.length
-            ? Column(
-                children: [
-                  Question(question[_qIndex]['questionText']),
-                  ...(question[_qIndex]['answerText'] as List<String>)
-                      .map((answer) {
-                    return Answer(_answerQuestion, answer);
-                  }).toList(),
-                ],
+        body: _questionIndex < _questions.length
+            ? Quiz(
+                answerQuestion: _answerQuestion,
+                questionIndex: _questionIndex,
+                questions: _questions,
               )
-            : Center(child: Text('YOU DID IT!')),
+            : Result(),
       ),
     );
   }
