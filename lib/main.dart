@@ -31,13 +31,12 @@ class _MyAppState extends State<MyApp> {
   ];
 
   // METHODS
-  void _answerQuestion() {
+  List _quizResult = [];
+  void _answerQuestion(String ans) {
     setState(() {
       // Calls Build method of widget again. Only draws the necessary parts
+      _quizResult.add(ans);
       _questionIndex++;
-      // if (_qIndex >= question.length) {
-      //   _qIndex = 0;
-      // }
     });
   }
 
@@ -59,12 +58,16 @@ class _MyAppState extends State<MyApp> {
           title: Text("My First App"),
         ),
         body: _questionIndex < _questions.length
+            //if
             ? Quiz(
                 answerQuestion: _answerQuestion,
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(),
+            //else
+            : Result(
+                resultList: _quizResult,
+              ),
       ),
     );
   }
