@@ -40,6 +40,13 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _resetQuiz(){
+    setState(() {
+      _quizResult.clear();
+      _questionIndex = 0;
+    });
+  }
+
   // BUILD
   @override //Widget deliberately overwrites the StatelessWidget build method
   Widget build(BuildContext context) //Required by StatelessWidget
@@ -67,6 +74,7 @@ class _MyAppState extends State<MyApp> {
             //else
             : Result(
                 resultList: _quizResult,
+                resetHandler: _resetQuiz,
               ),
       ),
     );
