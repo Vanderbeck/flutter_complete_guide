@@ -15,7 +15,7 @@ class Answer extends StatelessWidget {
         color: Colors.blue,
         textColor: Colors.white,
         child: Text(answerText),
-        onPressed: selectAnswer,
+        onPressed: () => selectAnswer(answerText), //Anonymous function pointer. Passes the text to main -> _answerQuestion
       ),
     );
   }
